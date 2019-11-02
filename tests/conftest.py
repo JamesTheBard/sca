@@ -1,6 +1,6 @@
 import os
 import pytest
-from sca import create_app
+from main import create_app
 from config import Config
 from collections import namedtuple
 from flask_migrate import upgrade
