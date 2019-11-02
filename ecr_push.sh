@@ -23,6 +23,7 @@ docker tag ${SOURCE_IMAGE} ${TARGET_IMAGE_TAGGED}
 docker push ${TARGET_IMAGE_TAGGED}
 
 # Docker Hub
+echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 docker tag ${SOURCE_IMAGE} ${DOCKER_IMAGE_LATEST}
 docker push ${DOCKER_IMAGE_LATEST}
 
