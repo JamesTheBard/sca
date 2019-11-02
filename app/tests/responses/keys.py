@@ -1,5 +1,4 @@
 from tests.test_config.config import TestConfig
-from config import Config
 
 user_key_get_response = [
     {

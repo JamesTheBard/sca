@@ -4,7 +4,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config(object):
-    JWT_SECRET_KEY = 'Rr9xK%lliD&8*@Gf0Z*x8Lz&Hy07pLsA#BEi9F6KmS3WF5qn0'
+    JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY') or 'Rr9xK%lliD&8*@Gf0Z*x8Lz&Hy07pLsA#BEi9F6KmS3WF5qn0'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///{}'.format(os.path.join(basedir, 'app.db'))
     SQLALCHEMY_TRACK_MODIFICATIONS = False

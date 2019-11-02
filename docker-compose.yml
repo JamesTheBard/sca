@@ -1,0 +1,14 @@
+# vim:ts=2:sts=2:sw=2:et
+---
+version: '3'
+services:
+  sca:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - APP_DEFAULT_USERNAME=${APP_DEFAULT_USERNAME} 
+      - APP_DEFAULT_PASSWORD=${APP_DEFAULT_PASSWORD}
+      - APP_DEFAULT_ADMIN_GROUP=${APP_DEFAULT_ADMIN_GROUP}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      
