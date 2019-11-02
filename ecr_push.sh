@@ -5,7 +5,7 @@ TARGET_IMAGE="${AWS_ECR_REPO}"
 TARGET_IMAGE_LATEST="${TARGET_IMAGE}:latest"
 TARGET_IMAGE_TAGGED="${TARGET_IMAGE}:${TRAVIS_TAG}"
 
-pip install --user awscli
+pip install awscli
 export PATH=$PATH:$HOME/.local/bin
 
 aws configure set default.region ${AWS_REGION}
