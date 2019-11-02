@@ -10,7 +10,7 @@ cache: pip
 install:
   - pip install -r requirements.txt
 
-script: cd app && pytest --cov=./app
+script: cd app && pytest --cov=./app && cd ..
 
 after_success:
   - docker --version
