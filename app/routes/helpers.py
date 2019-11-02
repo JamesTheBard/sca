@@ -24,7 +24,7 @@ def init():
         )
         admin_user.set_password(app.config['APP_DEFAULT_PASSWORD'])
         admin_group = Group(
-            name='SCA Administrator',
+            name=app.config['APP_DEFAULT_ADMIN_GROUP']
         )
         admin_user.in_groups.append(admin_group)
         db.session.add(admin_user)

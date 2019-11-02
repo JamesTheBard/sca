@@ -1,5 +1,5 @@
 from flask_migrate import upgrade
-from tests.config import TestConfig
+from tests.test_config.config import TestConfig
 from tests.conftest import login
 import os
 
@@ -36,18 +36,6 @@ def test_create_standard_user(client):
         assert response.status_code == code
         if response.status_code == 200:
             assert response.json['username'] == "John Smith"
-
-    codes = [200, 400]
-    assert r.response.status_code == 200
-    for code in codes:
-        response = client.put(
-            "/group",
-            json={"name": TestConfig.STANDARD_GROUP_NAME},
-            headers={"Authorization": "Bearer {}".format(r.token)}
-        )
-        assert response.status_code == code
-        if response.status_code == 200:
-            assert response.json['name'] == 'Test Group'
 
 
 def test_standard_login(client):

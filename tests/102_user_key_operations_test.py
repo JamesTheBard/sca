@@ -1,6 +1,7 @@
 from config import Config
-from tests.config import TestConfig
+from tests.test_config.config import TestConfig
 from tests.conftest import login
+from tests.responses import keys
 
 
 def test_user_key_put(client):
@@ -43,14 +44,26 @@ def test_user_key_put(client):
         assert response.json['id'] == 2
         assert response.json['pub_ssh_key'] == TestConfig.STANDARD_PUB_SSH_KEY
 
+
 def test_keys_get_route(client):
     r_std = login(client, TestConfig.STANDARD_USERNAME, TestConfig.STANDARD_PASSWORD)
     r_adm = login(client, Config.APP_DEFAULT_USERNAME, Config.APP_DEFAULT_PASSWORD)
 
-    creds = {401: r_std}
+    creds = {200: r_adm}
     for cred in creds:
         response = client.get('/keys', headers=creds[cred].headers)
-        print(creds[cred], response.json, response.status_code)
+        print(response.json)
         assert response.status_code == cred
         if response.status_code == 200:
-            assert len(response.json) == 2
+            assert response.json == keys.keys_get_response
+
+
+def test_user_key_get_route(client):
+    r_std = login(client, TestConfig.STANDARD_USERNAME, TestConfig.STANDARD_PASSWORD)
+    r_adm = login(client, Config.APP_DEFAULT_USERNAME, Config.APP_DEFAULT_PASSWORD)
+
+    creds = [r_std, r_adm]
+    for cred in creds:
+        response = client.get('/user/2/keys', headers=cred.headers)
+        assert response.status_code == 200
+        assert response.json == keys.user_key_get_response
