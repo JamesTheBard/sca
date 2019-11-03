@@ -4,7 +4,7 @@ SCA is a small API that was conjured together to managed users and public SSH ke
 
 # Installation
 
-The easiest way is to just grab the Docker image (`jamesthebard/sca:latest`), configure it, and then let it do work.
+The easiest way is to just grab the Docker image (`jamesthebard/sca:latest`), configure it, and then let it do work.  For more information: [https://hub.docker.com/r/jamesthebard/sca/tags].
 
 Unfortunately, the app currently does require that you add people, groups, and SSH keys via API calls, but development is in the works to add some CLI utilities to make things a lot easier.
 
