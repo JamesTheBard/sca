@@ -16,3 +16,5 @@ There are some environment variables that need to be set:
 - `APP_DEFAULT_PASSWORD|password`: The default password.
 - `APP_DEFAULT_ADMIN_GROUP|sca_admin`: The default group name.  Members in this group will be able to add users/groups/etc. to anyone in SCA.  Do not put non-administrators in this group.
 - `DATABASE_URL|sqlite:///app.db`: The connection to the database.  It will, however, support any DB connection that SQLAlchemy does.
+- `JWT_SECRET_KEY`: This needs to be defined to keep things secret as the app uses JWT tokens for authentication.
+
