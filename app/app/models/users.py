@@ -2,6 +2,8 @@ from app import db
 from app.models.user_groups_relationship import usergroups
 from werkzeug.security import generate_password_hash, check_password_hash
 
+users_restricted_fields = ['password_hash']
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)

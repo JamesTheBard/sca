@@ -4,7 +4,7 @@ from flask_restplus import Resource
 from flask_jwt_extended import jwt_required, verify_jwt_in_request, get_jwt_identity
 
 
-from app.models.users import User
+from app.models.users import User, users_restricted_fields
 from app.models.ssh_keys import SSHKey
 from app.routes.users import swagger_models
 from app.routes.helpers import token_parser, is_admin, object_as_dict
@@ -87,7 +87,11 @@ class UserRouteGetChange(Resource):
         u = User.query.filter_by(id=user_id).first()
         if not u:
             return {'msg': 'User not found'}, 404
-        [setattr(u, i[0], i[1]) for i in request.json.items()]
+        try:
+            u.set_password(request.json['password'])
+        except KeyError:
+            pass
+        [setattr(u, i[0], i[1]) for i in request.json.items() if i not in users_restricted_fields]
         db.session.add(u)
         db.session.commit()
         return {"id": u.id, "username": u.username}, 200
